@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using TasksWebService.Contexts;
+using System.Threading;
 
 namespace TasksWebService
 {
@@ -29,13 +30,13 @@ namespace TasksWebService
         {
             services.AddControllers();
 
+            Thread.Sleep(10000);
+
             var connection = @"Server=db;Database=db:1433;User=sa;Password=1Secure*Password1;";
 
             services.AddDbContext<Contexts.TaskContext>(
         options => options.UseSqlServer(connection));
 
-
-            var dbContext = services.ServiceProvider.GetService<WorkflowDBContext>();
 
 
             //        services.AddDbContext<Contexts.TaskContext>(options =>

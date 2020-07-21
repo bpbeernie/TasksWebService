@@ -35,6 +35,8 @@ namespace TasksWebService
         options => options.UseSqlServer(connection));
 
 
+            var dbContext = services.ServiceProvider.GetService<WorkflowDBContext>();
+
 
             //        services.AddDbContext<Contexts.TaskContext>(options =>
             //  options.UseSqlServer(Configuration.GetConnectionString("TaskDatabase")));
@@ -59,7 +61,7 @@ namespace TasksWebService
                 endpoints.MapControllers();
             });
 
-            DummyData.Initialize(app);
+             DummyData.InitializeAsync(app).GetAwaiter().GetResult();
         }
     }
 }

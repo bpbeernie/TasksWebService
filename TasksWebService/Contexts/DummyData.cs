@@ -10,12 +10,12 @@ namespace TasksWebService.Contexts
 {
     public class DummyData
     {
-        public static void Initialize(Microsoft.AspNetCore.Builder.IApplicationBuilder app)
+        public static async System.Threading.Tasks.Task InitializeAsync(Microsoft.AspNetCore.Builder.IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<TaskContext>();
-                context.Database.EnsureCreated();
+                await context.Database.EnsureCreatedAsync();
                 //context.Database.Migrate();
 
                 if (context.Tasks != null && context.Tasks.Any())

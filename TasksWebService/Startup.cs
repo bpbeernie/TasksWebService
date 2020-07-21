@@ -28,8 +28,15 @@ namespace TasksWebService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<Contexts.TaskContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("TaskDatabase")));
+
+            var connection = @"Server=db;Database=master;User=sa;Password=Password1;";
+
+            services.AddDbContext<Contexts.TaskContext>(
+        options => options.UseSqlServer(connection));
+
+
+            //        services.AddDbContext<Contexts.TaskContext>(options =>
+            //  options.UseSqlServer(Configuration.GetConnectionString("TaskDatabase")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

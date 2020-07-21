@@ -29,10 +29,11 @@ namespace TasksWebService
         {
             services.AddControllers();
 
-            var connection = @"Server=db;Database=master;User=sa;Password=Password1;";
+            var connection = @"Server=db;Database=db:1433;User=sa;Password=1Secure*Password1;";
 
             services.AddDbContext<Contexts.TaskContext>(
         options => options.UseSqlServer(connection));
+
 
 
             //        services.AddDbContext<Contexts.TaskContext>(options =>
